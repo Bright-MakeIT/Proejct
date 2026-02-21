@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI/ML/DL Project Master List 100+</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Pretendard', sans-serif; background-color: #f1f5f9; scroll-behavior: smooth; }
+        .section-anchor { scroll-margin-top: 100px; }
+        .project-card { transition: all 0.3s ease; border-left: 4px solid transparent; cursor: default; }
+        .project-card:hover { transform: translateX(10px); background-color: #f8fafc; border-left-color: #3b82f6; }
+        .nav-link { transition: all 0.2s; }
+        .nav-link:hover { color: #3b82f6; background-color: #eff6ff; }
+        .sticky-nav { height: calc(100vh - 40px); top: 20px; }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+    </style>
+</head>
+<body class="text-slate-800">
+
+    <div class="max-w-[1400px] mx-auto px-4 py-10 flex flex-col lg:flex-row gap-8">
+        
+        <!-- 좌측 퀵 내비게이션 (데스크탑 전용) -->
+        <aside class="hidden lg:block w-72 shrink-0">
+            <div class="sticky sticky-nav overflow-y-auto bg-white rounded-3xl p-6 shadow-sm border border-slate-200">
+                <h2 class="font-extrabold text-xl mb-6 flex items-center gap-2">
+                    <i class="fa-solid fa-list-ul text-blue-600"></i> 목차
+                </h2>
+                <nav class="space-y-1 text-sm font-medium text-slate-500">
+                    <a href="#sec1" class="nav-link block p-2 rounded-lg">1. 머신러닝 기초</a>
+                    <a href="#sec2" class="nav-link block p-2 rounded-lg">2. 딥러닝 프로젝트</a>
+                    <a href="#sec3" class="nav-link block p-2 rounded-lg">3. 자연어 처리 (NLP)</a>
+                    <a href="#sec4" class="nav-link block p-2 rounded-lg">4. 음성/오디오 처리</a>
+                    <a href="#sec5" class="nav-link block p-2 rounded-lg">5. 컴퓨터 비전 고급</a>
+                    <a href="#sec6" class="nav-link block p-2 rounded-lg">6. 실전/응용 AI</a>
+                    <a href="#sec7" class="nav-link block p-2 rounded-lg">7. Kaggle 경진대회</a>
+                    <a href="#sec8" class="nav-link block p-2 rounded-lg">8. 최신 트렌드 (2026)</a>
+                    <a href="#sec9" class="nav-link block p-2 rounded-lg">9. 창의적 프로젝트</a>
+                    <a href="#sec10" class="nav-link block p-2 rounded-lg">10. 시계열 분석</a>
+                    <a href="#sec11" class="nav-link block p-2 rounded-lg">11. 강화학습 프로젝트</a>
+                    <div class="pt-4 mt-4 border-t border-slate-100">
+                        <a href="#guide" class="block p-2 rounded-lg bg-blue-600 text-white text-center">선택 가이드 바로가기</a>
+                    </div>
+                </nav>
+            </div>
+        </aside>
+
+        <!-- 메인 콘텐츠 영역 -->
+        <div class="flex-1 space-y-12">
+            
+            <!-- 상단 헤더 -->
+            <header class="bg-white rounded-3xl p-8 md:p-12 shadow-sm border border-slate-200 relative overflow-hidden">
+                <div class="relative z-10">
+                    <span class="bg-blue-100 text-blue-700 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest">2026 AI Portfolio Master</span>
+                    <h1 class="text-3xl md:text-5xl font-black mt-4 mb-6 leading-tight">순수 AI/ML/DL <br><span class="text-blue-600">Python 프로젝트</span> 100선</h1>
+                    <p class="text-slate-500 text-lg max-w-2xl">
+                        웹 UI 구축이 아닌, 알고리즘 구현과 데이터 분석 중심의 실전 주제들을 모두 나열했습니다. 본인의 목표 직무에 맞춰 깊이 있는 프로젝트를 선택하세요.
+                    </p>
+                </div>
+                <i class="fa-solid fa-code-branch absolute right-[-20px] bottom-[-20px] text-[200px] text-slate-50 opacity-50"></i>
+            </header>
+
+            <!-- 1. 머신러닝 기초 -->
+            <section id="sec1" class="section-anchor space-y-6">
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 bg-blue-600 rounded-2xl flex items-center justify-center text-white text-xl">
+                        <i class="fa-solid fa-chart-line"></i>
+                    </div>
+                    <h2 class="text-2xl font-extrabold italic">1. 머신러닝 기초 프로젝트 (기본기)</h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                        <h3 class="font-bold text-blue-600 mb-4 border-b pb-2">회귀 (Regression)</h3>
+                        <ul class="space-y-3">
+                            <li class="project-card p-2 rounded-lg text-slate-600">자전거 대여 수요 예측 모델</li>
+                            <li class="project-card p-2 rounded-lg text-slate-600">주택 가격 예측 시스템</li>
+                            <li class="project-card p-2 rounded-lg text-slate-600">교통량 예측 (Real-Time Traffic Flow)</li>
+                            <li class="project-card p-2 rounded-lg text-slate-600">호텔 예약 취소율 예측</li>
+                            <li class="project-card p-2 rounded-lg text-slate-600">주식 가격 예측 모델</li>
+                            <li class="project-card p-2 rounded-lg text-slate-600">날씨 데이터 기반 에너지 소비량 예측</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                        <h3 class="font-bold text-blue-600 mb-4 border-b pb-2">분류 (Classification)</h3>
+                        <ul class="space-y-3">
+                            <li class="project-card p-2 rounded-lg text-slate-600">은행 마케팅 예금 가입 여부 예측</li>
+                            <li class="project-card p-2 rounded-lg text-slate-600">신용카드 사기 탐지 시스템 (FDS)</li>
+                            <li class="project-card p-2 rounded-lg text-slate-600">고객 이탈(Churn) 예측 모델</li>
+                            <li class="project-card p-2 rounded-lg text-slate-600">스팸 메일 필터링 시스템</li>
+                            <li class="project-card p-2 rounded-lg text-slate-600">질병 진단 예측 모델 (의료 데이터)</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 col-span-1 md:col-span-2">
+                        <h3 class="font-bold text-blue-600 mb-4 border-b pb-2">군집화 & 추천 (Clustering & Recommender)</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <ul class="space-y-3">
+                                <li class="project-card p-2 rounded-lg text-slate-600">고객 세분화(Segmentation) 모델</li>
+                                <li class="project-card p-2 rounded-lg text-slate-600">사용자 행동 패턴 분석 및 그룹화</li>
+                                <li class="project-card p-2 rounded-lg text-slate-600">협업 필터링 기반 영화 추천 시스템</li>
+                            </ul>
+                            <ul class="space-y-3">
+                                <li class="project-card p-2 rounded-lg text-slate-600">상품 추천 알고리즘 (e-commerce)</li>
+                                <li class="project-card p-2 rounded-lg text-slate-600">음악 추천 시스템</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 2. 딥러닝 -->
+            <section id="sec2" class="section-anchor space-y-6">
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 bg-indigo-600 rounded-2xl flex items-center justify-center text-white text-xl">
+                        <i class="fa-solid fa-brain"></i>
+                    </div>
+                    <h2 class="text-2xl font-extrabold italic">2. 딥러닝 프로젝트 (이미지/비전)</h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                        <h4 class="font-bold text-indigo-600 mb-4">이미지 분류 & 객체 탐지</h4>
+                        <ul class="space-y-2">
+                            <li class="project-card p-2 rounded-lg text-slate-600">흉부 X-Ray 폐렴 진단 (CNN)</li>
+                            <li class="project-card p-2 rounded-lg text-slate-600">농산물 등급 판별 시스템</li>
+                            <li class="project-card p-2 rounded-lg text-slate-600">개와 고양이 얼굴 감지 (YOLO)</li>
+                            <li class="project-card p-2 rounded-lg text-slate-600">CCTV 얼굴 인식 시스템</li>
+                            <li class="project-card p-2 rounded-lg text-slate-600">자율주행용 도로 객체 인식</li>
+                            <li class="project-card p-2 rounded-lg text-slate-600">MNIST/CIFAR-10 고도화</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 text-indigo-900 bg-indigo-50/50">
+                        <h4 class="font-bold text-indigo-700 mb-4">세분화 & 생성 (Advanced)</h4>
+                        <ul class="space-y-2">
+                            <li class="project-card p-2 rounded-lg text-slate-600">뇌종양 MRI 이미지 분할 (U-Net)</li>
+                            <li class="project-card p-2 rounded-lg text-slate-600">축구 영상 사물 구분 모델</li>
+                            <li class="project-card p-2 rounded-lg text-slate-600">GAN 활용 패션 아이템 생성</li>
+                            <li class="project-card p-2 rounded-lg text-slate-600">Diffusion Model 기반 이미지 생성</li>
+                            <li class="project-card p-2 rounded-lg text-slate-600">손상 문서 이미지 복원 모델</li>
+                            <li class="project-card p-2 rounded-lg text-slate-600">StyleGAN 얼굴 생성 프로젝트</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 3. NLP -->
+            <section id="sec3" class="section-anchor space-y-6">
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 bg-emerald-600 rounded-2xl flex items-center justify-center text-white text-xl">
+                        <i class="fa-solid fa-comment-dots"></i>
+                    </div>
+                    <h2 class="text-2xl font-extrabold italic">3. 자연어 처리 (NLP) 프로젝트</h2>
+                </div>
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-200 grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                        <h4 class="font-bold text-emerald-600 mb-4">분류 & 감정 분석</h4>
+                        <ul class="space-y-2 text-slate-600">
+                            <li class="project-card p-2 rounded-lg">뉴스 기사 카테고리 분류</li>
+                            <li class="project-card p-2 rounded-lg">SNS 실시간 감정 분석</li>
+                            <li class="project-card p-2 rounded-lg">영화 리뷰 긍정/부정 분류</li>
+                            <li class="project-card p-2 rounded-lg">정신 건강 예측 텍스트 분석</li>
+                        </ul>
+                        <h4 class="font-bold text-emerald-600 mt-6 mb-4">번역 & 요약</h4>
+                        <ul class="space-y-2 text-slate-600">
+                            <li class="project-card p-2 rounded-lg">뉴스 기사 자동 요약 (BART)</li>
+                            <li class="project-card p-2 rounded-lg">제안요청서(RFP) 내용 추출 서비스</li>
+                            <li class="project-card p-2 rounded-lg">한영/영한 기계 번역 모델</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-emerald-600 mb-4">챗봇 & 고급 NLP</h4>
+                        <ul class="space-y-2 text-slate-600">
+                            <li class="project-card p-2 rounded-lg">FAQ 자동응답 챗봇 시스템</li>
+                            <li class="project-card p-2 rounded-lg">RAG 기반 정보 검색 엔진</li>
+                            <li class="project-card p-2 rounded-lg">LangChain 활용 AI 에이전트</li>
+                            <li class="project-card p-2 rounded-lg">BERT 기반 질의응답 (QA)</li>
+                            <li class="project-card p-2 rounded-lg">GPT 파인튜닝 프로젝트</li>
+                            <li class="project-card p-2 rounded-lg">Transformer 모델 직접 구현</li>
+                            <li class="project-card p-2 rounded-lg">개체명 인식(NER) 시스템</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 4 & 5. Audio & Vision -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <section id="sec4" class="section-anchor space-y-6">
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 bg-rose-600 rounded-xl flex items-center justify-center text-white">
+                            <i class="fa-solid fa-microphone"></i>
+                        </div>
+                        <h2 class="text-xl font-bold">4. 음성/오디오 처리</h2>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200">
+                        <ul class="space-y-2 text-slate-600">
+                            <li class="project-card p-2 rounded-lg">음성 인식 시스템 (STT)</li>
+                            <li class="project-card p-2 rounded-lg">5가지 음성 감정 분석 모델</li>
+                            <li class="project-card p-2 rounded-lg">화자 인식 (Speaker Identification)</li>
+                            <li class="project-card p-2 rounded-lg">음성 합성 시스템 (TTS)</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section id="sec5" class="section-anchor space-y-6">
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 bg-orange-600 rounded-xl flex items-center justify-center text-white">
+                            <i class="fa-solid fa-eye"></i>
+                        </div>
+                        <h2 class="text-xl font-bold">5. 컴퓨터 비전 고급</h2>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200">
+                        <ul class="space-y-2 text-slate-600">
+                            <li class="project-card p-2 rounded-lg">한글 OCR 문자 인식 시스템</li>
+                            <li class="project-card p-2 rounded-lg">명함 자동 인식 및 텍스트 추출</li>
+                            <li class="project-card p-2 rounded-lg">비디오 이상 행동 탐지 (CCTV)</li>
+                            <li class="project-card p-2 rounded-lg">운동 자세 교정 (MediaPipe)</li>
+                            <li class="project-card p-2 rounded-lg">손 제스처 인식 제어 모델</li>
+                        </ul>
+                    </div>
+                </section>
+            </div>
+
+            <!-- 6. 실전/응용 AI -->
+            <section id="sec6" class="section-anchor space-y-6">
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 bg-cyan-600 rounded-2xl flex items-center justify-center text-white text-xl">
+                        <i class="fa-solid fa-earth-asia"></i>
+                    </div>
+                    <h2 class="text-2xl font-extrabold italic">6. 실전/응용 AI (산업별 도메인)</h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200">
+                        <h4 class="font-bold text-cyan-600 mb-3 uppercase text-xs">Medical AI</h4>
+                        <ul class="text-sm space-y-2 text-slate-600">
+                            <li class="project-card p-1 rounded-md">당뇨병 예측 모델</li>
+                            <li class="project-card p-1 rounded-md">암 진단 보조 시스템</li>
+                            <li class="project-card p-1 rounded-md">경구 약제 이미지 분류</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200">
+                        <h4 class="font-bold text-cyan-600 mb-3 uppercase text-xs">Finance AI</h4>
+                        <ul class="text-sm space-y-2 text-slate-600">
+                            <li class="project-card p-1 rounded-md">LSTM 주가 예측 알고리즘</li>
+                            <li class="project-card p-1 rounded-md">대출 승인 예측 모델</li>
+                            <li class="project-card p-1 rounded-md">포트폴리오 최적화</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200">
+                        <h4 class="font-bold text-cyan-600 mb-3 uppercase text-xs">Marketing AI</h4>
+                        <ul class="text-sm space-y-2 text-slate-600">
+                            <li class="project-card p-1 rounded-md">광고 콘텐츠 자동 생성</li>
+                            <li class="project-card p-1 rounded-md">고객 생애 가치(LTV) 예측</li>
+                            <li class="project-card p-1 rounded-md">A/B 테스트 자동화</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 7. Kaggle -->
+            <section id="sec7" class="section-anchor space-y-6">
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 bg-blue-500 rounded-2xl flex items-center justify-center text-white text-xl">
+                        <i class="fa-solid fa-trophy"></i>
+                    </div>
+                    <h2 class="text-2xl font-extrabold italic">7. Kaggle 경진대회 기반 (데이터 분석력)</h2>
+                </div>
+                <div class="bg-white p-8 rounded-3xl border border-slate-200 flex flex-wrap gap-3">
+                    <span class="project-card bg-slate-100 text-slate-700 px-4 py-2 rounded-full font-medium border border-transparent">Titanic 생존자 (입문)</span>
+                    <span class="project-card bg-slate-100 text-slate-700 px-4 py-2 rounded-full font-medium border border-transparent">House Prices 회귀</span>
+                    <span class="project-card bg-slate-100 text-slate-700 px-4 py-2 rounded-full font-medium border border-transparent">Digit Recognizer</span>
+                    <span class="project-card bg-slate-100 text-slate-700 px-4 py-2 rounded-full font-medium border border-transparent">이커머스 배송 예측</span>
+                    <span class="project-card bg-slate-100 text-slate-700 px-4 py-2 rounded-full font-medium border border-transparent">국가별 올림픽 성과</span>
+                    <span class="project-card bg-slate-100 text-slate-700 px-4 py-2 rounded-full font-medium border border-transparent">농작물 병해충 분류</span>
+                </div>
+            </section>
+
+            <!-- 8. 최신 트렌드 -->
+            <section id="sec8" class="section-anchor space-y-6">
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 bg-slate-900 rounded-2xl flex items-center justify-center text-white text-xl">
+                        <i class="fa-solid fa-rocket"></i>
+                    </div>
+                    <h2 class="text-2xl font-extrabold italic">8. 최신 트렌드 AI (LLM & MLOps)</h2>
+                </div>
+                <div class="bg-slate-900 text-white p-8 rounded-3xl shadow-xl grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="space-y-4">
+                        <h4 class="text-cyan-400 font-bold border-l-4 border-cyan-400 pl-4">LLM & Generative</h4>
+                        <ul class="space-y-2">
+                            <li class="project-card p-2 rounded-lg text-slate-300">• Private GPT 구축 (RAG 기반)</li>
+                            <li class="project-card p-2 rounded-lg text-slate-300">• PEFT 기법 활용 LLM 파인튜닝</li>
+                            <li class="project-card p-2 rounded-lg text-slate-300">• 멀티모달 챗봇 (이미지+텍스트)</li>
+                            <li class="project-card p-2 rounded-lg text-slate-300">• 프롬프트 엔지니어링 최적화</li>
+                        </ul>
+                    </div>
+                    <div class="space-y-4">
+                        <h4 class="text-purple-400 font-bold border-l-4 border-purple-400 pl-4">MLOps & Optimization</h4>
+                        <ul class="space-y-2">
+                            <li class="project-card p-2 rounded-lg text-slate-300">• Docker 활용 모델 컨테이너화</li>
+                            <li class="project-card p-2 rounded-lg text-slate-300">• FastAPI 모델 서빙 시스템</li>
+                            <li class="project-card p-2 rounded-lg text-slate-300">• Streamlit 대시보드 개발</li>
+                            <li class="project-card p-2 rounded-lg text-slate-300">• 모델 양자화 및 경량화 (Pruning)</li>
+                            <li class="project-card p-2 rounded-lg text-slate-300">• TensorRT 추론 속도 개선</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 9, 10, 11 (Remaining sections) -->
+            <section id="sec9" class="section-anchor space-y-4">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">                
+                    <div class="col-span-full"><h3 class="font-bold text-lg flex items-center gap-2"><span class="text-xl">💡</span> 9. 창의적 프로젝트</h3></div>
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 h-full col-span-1 md:col-span-3 lg:col-span-1">
+                        <ul class="text-sm space-y-3 text-slate-600">
+                            <li class="project-card p-2 rounded-md">AI 예술 작품 생성 (Stable Diffusion)</li>
+                            <li class="project-card p-2 rounded-md">AI 작곡가 시스템 (Music Gen)</li>
+                            <li class="project-card p-2 rounded-md">스타일 전이(Style Transfer) 앱</li>
+                            <li class="project-card p-2 rounded-md">게임 AI 에이전트 개발</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="sec10" class="section-anchor space-y-4">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8"> 
+                    <div class="col-span-full"><h3 class="font-bold text-lg flex items-center gap-2"><span class="text-xl">📈</span> 10. 시계열 분석</h3></div>
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 h-full col-span-1 md:col-span-3 lg:col-span-1">
+                        <ul class="text-sm space-y-3 text-slate-600">
+                            <li class="project-card p-2 rounded-md">주식 시장 이상 탐지 시스템</li>
+                            <li class="project-card p-2 rounded-md">전력 소비 패턴 분석 및 예측</li>
+                            <li class="project-card p-2 rounded-md">IoT 센서 데이터 기반 예측</li>
+                            <li class="project-card p-2 rounded-md">매출 예측 및 재고 최적화</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="sec11" class="section-anchor space-y-4">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8"> 
+                    <div class="col-span-full"><h3 class="font-bold text-lg flex items-center gap-2"><span class="text-xl">🎯</span> 11. 강화학습</h3></div>
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 h-full col-span-1 md:col-span-3 lg:col-span-1">
+                        <ul class="text-sm space-y-3 text-slate-600">
+                            <li class="project-card p-2 rounded-md">OpenAI Gym 게임 플레이 AI</li>
+                            <li class="project-card p-2 rounded-md">로봇 제어 시뮬레이션</li>
+                            <li class="project-card p-2 rounded-md">자율주행 시뮬레이터 강화학습</li>
+                            <li class="project-card p-2 rounded-md">트레이딩 봇 (강화학습 기반)</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Guide Section -->
+            <section id="guide" class="section-anchor bg-blue-50 p-10 rounded-3xl border border-blue-100">
+                <h2 class="text-3xl font-black mb-8 text-blue-900">🎯 프로젝트 선택 가이드 (핵심 요약)</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                    <div class="space-y-4">
+                        <h4 class="font-bold text-blue-800 underline decoration-blue-300">난이도별 추천</h4>
+                        <div class="space-y-2 text-sm text-slate-600">
+                            <p><strong>입문자:</strong> 1번(ML 기초), 7번(Kaggle 기본) 분야부터 시작하여 데이터 전처리 감각을 익히세요.</p>
+                            <p><strong>중급자:</strong> 2~5번 분야의 딥러닝 아키텍처(CNN, Transformer)를 직접 구현해 보세요.</p>
+                            <p><strong>고급자:</strong> 8번(MLOps)을 포함하여 모델을 실제 '서비스' 형태로 만드는 역량을 보여주세요.</p>
+                        </div>
+                    </div>
+                    <div class="space-y-4">
+                        <h4 class="font-bold text-blue-800 underline decoration-blue-300">산업 도메인별 추천</h4>
+                        <div class="space-y-2 text-sm text-slate-600">
+                            <p><strong>의료:</strong> 흉부 X-ray 진단, MRI 세분화, 질병 예측 모델</p>
+                            <p><strong>금융:</strong> FDS 사기 탐지, 주가 예측, 포트폴리오 최적화</p>
+                            <p><strong>커머스:</strong> 고객 이탈 예측, 추천 엔진, LTV 예측</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <footer class="text-center text-slate-400 py-10 text-sm">
+                <p>© 2026 AI Portfolio Master List. All Rights Reserved.</p>
+            </footer>
+
+        </div>
+    </div>
+
+</body>
+</html>
