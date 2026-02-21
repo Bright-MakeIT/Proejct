@@ -557,23 +557,7 @@
                             plt.xticks([]); plt.yticks([]); plt.grid(False)
                             plt.imshow(x_train[i], cmap=plt.cm.binary)
                             plt.xlabel(y_train[i])
-                        plt.show()</code></pre>
-                        </section>
-                        
-                        <section>
-                          <h2>모델 아키텍처 (CNN)</h2>
-                        
-                          <pre><code>model = tf.keras.models.Sequential([
-                            tf.keras.layers.Conv2D(32, (3,3), activation='relu', input_shape=(28,28,1)),
-                            tf.keras.layers.MaxPooling2D((2,2)),
-                            tf.keras.layers.Conv2D(64, (3,3), activation='relu'),
-                            tf.keras.layers.MaxPooling2D((2,2)),
-                            tf.keras.layers.Flatten(),
-                            tf.keras.layers.Dense(64, activation='relu'),
-                            tf.keras.layers.Dense(10, activation='softmax')
-                        ])
-                        
-                        model.summary()
+                        plt.show()
                     </code></pre>
 
                     <p class="mt-4 text-center font-semibold text-slate-600">→ Conv → Pooling → Conv → Pooling → Flatten → Dense → Softmax</p>
@@ -598,9 +582,12 @@
                         # 학습 곡선
                         plt.plot(history.history['accuracy'], label='train')
                         plt.plot(history.history['val_accuracy'], label='val')
-                        plt.xlabel('Epoch'); plt.ylabel('Accuracy')
-                        plt.legend(); plt.show()                        
+                        plt.xlabel('Epoch'); 
+                        plt.ylabel('Accuracy')
+                        plt.legend(); 
+                        plt.show()
                     </code></pre>
+
                     <p class="text-slate-600">일반적으로 <span class="highlight">5 에폭만으로도 98% 이상</span>의 테스트 정확도를 달성합니다.</p>
                 </div>
 
@@ -628,7 +615,6 @@
                         <li>ONNX 또는 TensorFlow Lite로 경량화하여 모바일 탑재</li>
                     </ul>
                 </div>
-        
             </section>
                               
 
