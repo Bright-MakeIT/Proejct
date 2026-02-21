@@ -15,6 +15,14 @@
         .nav-link { transition: all 0.2s; }
         .nav-link:hover { color: #3b82f6; background-color: #eff6ff; }
         .sticky-nav { height: calc(100vh - 40px); top: 20px; }
+
+         /* 예시 페이지 스타일 통합 */
+        .example-section { background: white; border-radius: 16px; box-shadow: 0 8px 20px rgba(0,0,0,0.05); padding: 30px; margin-bottom: 40px; }
+        .example-header { background: linear-gradient(135deg, #0f2027, #203a43, #2c5364); color: white; border-radius: 16px 16px 0 0; padding: 40px 20px; text-align: center; margin: -30px -30px 30px; }
+        .example-header.blue-purple { background: linear-gradient(135deg, #667eea, #764ba2); }
+        pre { background: #1e1e1e; color: #d4d4d4; padding: 20px; overflow-x: auto; border-radius: 12px; font-size: 14px; margin: 15px 0; border-left: 4px solid #3b82f6; }
+        .badge-custom { display: inline-block; padding: 6px 12px; border-radius: 20px; font-size: 12px; margin-right: 8px; margin-bottom: 8px; color: white; }
+               
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #f1f5f9; }
         ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
@@ -46,6 +54,13 @@
                     <div class="pt-4 mt-4 border-t border-slate-100">
                         <a href="#guide" class="block p-2 rounded-lg bg-blue-600 text-white text-center">선택 가이드 바로가기</a>
                     </div>
+
+                    <!-- 예시 페이지 스타일 통합 -->   
+                    <p class="text-xs font-bold text-slate-400 px-2 py-2 mt-4 uppercase tracking-tighter">Practical Examples</p>
+                    <a href="#ex1" class="nav-link block p-2 rounded-lg font-bold text-blue-600"><i class="fa-solid fa-file-code mr-2"></i>예시 1: AutoEncoder</a>
+                    <a href="#ex2" class="nav-link block p-2 rounded-lg font-bold text-indigo-600"><i class="fa-solid fa-file-code mr-2"></i>예시 2: MNIST CNN</a>
+                    <a href="#ex3" class="nav-link block p-2 rounded-lg font-bold text-purple-600"><i class="fa-solid fa-file-code mr-2"></i>예시 3: YOLOv8</a>
+                     
                 </nav>
             </div>
         </aside>
@@ -374,6 +389,372 @@
                 </div>
             </section>
 
+
+        <!-- 예시 페이지 스타일 통합 -->   
+            <hr class="border-slate-300">
+
+            <!-- 예시 1: AutoEncoder -->
+            <section id="ex1" class="section-anchor example-section">
+                <div class="example-header">
+                    <h1 class="text-2xl md:text-3xl font-bold">AutoEncoder 기반 이상 거래 탐지</h1>
+                    <p class="mt-2 opacity-80">Python & PyTorch로 구현한 비지도 학습 AI 프로젝트</p>
+                </div>
+                
+                <div class="mb-8">
+                    <h2 class="text-xl font-bold border-l-4 border-slate-700 pl-3 mb-4">📌 프로젝트 개요</h2>
+                    <div class="flex flex-wrap mb-4">
+                        <span class="badge-custom bg-slate-700">Deep Learning</span>
+                        <span class="badge-custom bg-slate-700">Anomaly Detection</span>
+                        <span class="badge-custom bg-slate-700">PyTorch</span>
+                    </div>
+                    <p class="text-slate-600">정상 거래 패턴을 학습한 뒤 재구성 오차(Reconstruction Error)를 기반으로 이상 거래를 탐지하는 AutoEncoder 모델을 구현했습니다.</p>
+                </div>
+
+
+                <div class="mb-8">
+                    <h2 class="text-xl font-bold border-l-4 border-slate-700 pl-3 mb-4">🧠 모델 구조</h2>
+                    <p class="text-slate-600">Input(30) → Encoder(16 → 8) → Bottleneck → Decoder(8 → 16) → Output(30)</p>
+                    <p class="text-slate-600 mt-2">
+                        Loss Function: MSE (Mean Squared Error)<br>
+                        Optimizer: Adam
+                    </p>
+                </div>
+                
+                <div class="mb-8">
+                    <h2 class="text-xl font-bold border-l-4 border-slate-700 pl-3 mb-4">💻 Google Colab 실습 코드</h2>
+                    <p>아래 코드를 복사하여 Google Colab에서 실행 가능합니다.</p>   
+                    <pre><code>
+                        # 라이브러리 설치
+                        !pip install torch pandas scikit-learn
+                        
+                        import torch
+                        import torch.nn as nn
+                        import pandas as pd
+                        import numpy as np
+                        from sklearn.preprocessing import StandardScaler
+                        from sklearn.metrics import classification_report
+                        
+                        # 데이터 업로드
+                        from google.colab import files
+                        uploaded = files.upload()
+                        filename = list(uploaded.keys())[0]
+                        df = pd.read_csv(filename)
+                        
+                        X = df.drop(['Class'], axis=1)
+                        y = df['Class']
+                        
+                        scaler = StandardScaler()
+                        X_scaled = scaler.fit_transform(X)
+                        X_tensor = torch.FloatTensor(X_scaled)
+                        
+                        X_train = X_tensor[y == 0]
+                        
+                        class AutoEncoder(nn.Module):
+                            def __init__(self):
+                                super(AutoEncoder, self).__init__()
+                                self.encoder = nn.Sequential(
+                                    nn.Linear(30,16),
+                                    nn.ReLU(),
+                                    nn.Linear(16,8)
+                                )
+                                self.decoder = nn.Sequential(
+                                    nn.Linear(8,16),
+                                    nn.ReLU(),
+                                    nn.Linear(16,30)
+                                )
+                            def forward(self,x):
+                                encoded = self.encoder(x)
+                                decoded = self.decoder(encoded)
+                                return decoded
+                        
+                        model = AutoEncoder()
+                        criterion = nn.MSELoss()
+                        optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
+                        
+                        for epoch in range(20):
+                            optimizer.zero_grad()
+                            output = model(X_train)
+                            loss = criterion(output, X_train)
+                            loss.backward()
+                            optimizer.step()
+                            print(f"Epoch {epoch}, Loss: {loss.item()}")
+                        
+                        with torch.no_grad():
+                            reconstructed = model(X_tensor)
+                            errors = torch.mean((X_tensor - reconstructed)**2, dim=1)
+                        
+                        threshold = np.percentile(errors.numpy(), 95)
+                        preds = (errors.numpy() > threshold).astype(int)
+                        
+                        print(classification_report(y, preds))
+                    </code></pre>
+                </div>
+                
+                <div class="mb-8">
+                    <h2 class="text-xl font-bold border-l-4 border-slate-700 pl-3 mb-4">📊 결과 분석</h2>
+                    <ul class="list-disc list-inside text-slate-600 space-y-1">
+                        <li>재구성 오차 기반 이상 판별</li>
+                        <li>Precision / Recall / F1-score 평가</li>
+                        <li>Threshold 조정에 따른 성능 비교</li>
+                    </ul>
+                </div>
+                
+                <div class="mb-8">
+                    <h2 class="text-xl font-bold border-l-4 border-slate-700 pl-3 mb-4">🚀 고도화 방향</h2>
+                    <ul class="list-disc list-inside text-slate-600 space-y-1">
+                        <li>Dropout 추가를 통한 과적합 방지</li>
+                        <li>Variational AutoEncoder(VAE)와 성능 비교</li>
+                        <li>Isolation Forest 등 전통적 통계 모델과 앙상블</li>
+                        <li>실제 산업 데이터(Credit Card Fraud 등) 적용</li>
+                    </ul>
+                </div>
+                
+                <div class="mb-8">
+                    <h2 class="text-xl font-bold border-l-4 border-slate-700 pl-3 mb-4">📎 GitHub 업로드 구조</h2>
+                    <ul class="list-disc list-inside text-slate-600 space-y-1">
+                        <li>README.md: 프로젝트 요약 및 실행법</li>
+                        <li>notebook.ipynb: 분석 및 학습 전체 과정</li>
+                        <li>images/: 모델 구조 및 손실 곡선 이미지</li>
+                        <li>report.pdf: 결과 분석 리포트</li>
+                    </ul>
+                </div>
+                
+            </section>
+
+
+            <!-- 예시 2: MNIST -->
+            <section id="ex2" class="section-anchor example-section">
+                <div class="example-header blue-purple">
+                    <h1 class="text-2xl md:text-3xl font-bold">딥러닝 기반 MNIST 손글씨 인식</h1>
+                    <p class="mt-2 opacity-80">Python & TensorFlow/Keras 기반 이미지 분류</p>
+                </div>
+
+                <div class="mb-8">
+                    <h2 class="text-xl font-bold border-l-4 border-indigo-600 pl-3 mb-4">프로젝트 개요</h2>
+                    <div class="flex flex-wrap mb-4">
+                        <span class="badge-custom bg-green-500">TensorFlow 2.x</span>
+                        <span class="badge-custom bg-green-500">CNN</span>
+                        <span class="badge-custom bg-green-500">Accuracy 98%+</span>
+                    </div>
+                    <p class="text-slate-600">MNIST 데이터셋을 활용해 0~9 숫자를 인식하는 CNN(Convolutional Neural Network)을 구축했습니다.</p>
+                </div>
+
+                <div class="mb-8">
+                    <h2 class="text-xl font-bold border-l-4 border-indigo-600 pl-3 mb-4">모델 아키텍처</h2>
+                    <pre><code>
+                        # 데이터 로드 & 시각화 (Google Colab 추천)
+                        import tensorflow as tf
+                        import matplotlib.pyplot as plt
+                        
+                        mnist = tf.keras.datasets.mnist
+                        (x_train, y_train), (x_test, y_test) = mnist.load_data()
+                        
+                        x_train, x_test = x_train / 255.0, x_test / 255.0
+                        
+                        plt.figure(figsize=(10,10))
+                        for i in range(25):
+                            plt.subplot(5,5,i+1)
+                            plt.xticks([]); plt.yticks([]); plt.grid(False)
+                            plt.imshow(x_train[i], cmap=plt.cm.binary)
+                            plt.xlabel(y_train[i])
+                        plt.show()</code></pre>
+                        </section>
+                        
+                        <section>
+                          <h2>모델 아키텍처 (CNN)</h2>
+                        
+                          <pre><code>model = tf.keras.models.Sequential([
+                            tf.keras.layers.Conv2D(32, (3,3), activation='relu', input_shape=(28,28,1)),
+                            tf.keras.layers.MaxPooling2D((2,2)),
+                            tf.keras.layers.Conv2D(64, (3,3), activation='relu'),
+                            tf.keras.layers.MaxPooling2D((2,2)),
+                            tf.keras.layers.Flatten(),
+                            tf.keras.layers.Dense(64, activation='relu'),
+                            tf.keras.layers.Dense(10, activation='softmax')
+                        ])
+                        
+                        model.summary()
+                    </code></pre>
+
+                    <p class="mt-4 text-center font-semibold text-slate-600">→ Conv → Pooling → Conv → Pooling → Flatten → Dense → Softmax</p>
+                </div>
+
+                <div class="mb-8">
+                    <h2 class="text-xl font-bold border-l-4 border-indigo-600 pl-3 mb-4">💻 모델 훈련 & 평가 코드</h2>
+                    <pre><code>
+                        # 데이터 reshape (CNN 입력 형식)
+                        x_train = x_train[..., tf.newaxis]
+                        x_test = x_test[..., tf.newaxis]
+                        
+                        model.compile(optimizer='adam',
+                                      loss='sparse_categorical_crossentropy',
+                                      metrics=['accuracy'])
+                        
+                        history = model.fit(x_train, y_train, epochs=5, validation_data=(x_test, y_test))
+                        
+                        test_loss, test_acc = model.evaluate(x_test, y_test, verbose=2)
+                        print(f"Test accuracy: {test_acc:.4f}")
+                        
+                        # 학습 곡선
+                        plt.plot(history.history['accuracy'], label='train')
+                        plt.plot(history.history['val_accuracy'], label='val')
+                        plt.xlabel('Epoch'); plt.ylabel('Accuracy')
+                        plt.legend(); plt.show()                        
+                    </code></pre>
+                    <p class="text-slate-600">일반적으로 <span class="highlight">5 에폭만으로도 98% 이상</span>의 테스트 정확도를 달성합니다.</p>
+                </div>
+
+                <div class="mb-8">
+                    <h2 class="text-xl font-bold border-l-4 border-indigo-600 pl-3 mb-4">📊 결과 & 분석</h2>
+                    <ul class="list-disc list-inside text-slate-600 space-y-2">
+                        <li>테스트 정확도: 보통 98.2% ~ 99.1% 달성</li>
+                        <li>주요 학습 포인트: 데이터 정규화, CNN 구조 이해, 과적합 방지</li>
+                        <li>향후 개선 아이디어:
+                            <ul class="ml-6 mt-1 list-circle list-inside">
+                                <li>데이터 증강 (ImageDataGenerator)을 통한 일반화 성능 향상</li>
+                                <li>Dropout / BatchNormalization 추가</li>
+                                <li>더 깊은 ResNet 스타일 아키텍처 도입</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="mb-8">
+                    <h2 class="text-xl font-bold border-l-4 border-indigo-600 pl-3 mb-4">🚀 다음 단계 & 확장 가능성</h2>
+                    <ul class="list-disc list-inside text-slate-600 space-y-1">
+                        <li>CIFAR-10, Fashion-MNIST 등 다른 데이터셋 적용</li>
+                        <li>실제 사진 인식 (전이학습 – MobileNet, EfficientNet)</li>
+                        <li>모델을 Streamlit/Gradio 웹 앱으로 배포하여 인터랙티브 데모 제작</li>
+                        <li>ONNX 또는 TensorFlow Lite로 경량화하여 모바일 탑재</li>
+                    </ul>
+                </div>
+        
+            </section>
+                              
+
+            <!-- 예시 3: YOLOv8 -->
+            <section id="ex3" class="section-anchor example-section">
+                <div class="example-header blue-purple">
+                    <h1 class="text-2xl md:text-3xl font-bold">컴퓨터 비전: YOLOv8 기반 객체 탐지 프로젝트</h1>
+                    <p class="mt-2 opacity-80">Python & Ultralytics를 활용한 실시간 객체 인식 시스템 구축</p>
+                </div>
+
+                <div class="mb-8">
+                    <h2 class="text-xl font-bold border-l-4 border-indigo-600 pl-3 mb-4">프로젝트 개요</h2>
+                    <div class="flex flex-wrap mb-4">
+                        <span class="badge-custom bg-indigo-500">YOLOv8</span>
+                        <span class="badge-custom bg-indigo-500">PyTorch</span>
+                        <span class="badge-custom bg-indigo-500">mAP 0.75+</span>
+                    </div>
+                    <p class="text-slate-600">
+                        이 프로젝트는 YOLOv8 모델을 사용해 이미지/비디오에서 객체를 탐지하고 분류하는 시스템을 구현합니다. COCO 데이터셋이나 커스텀 데이터(예: 교통 표지판)를 훈련해 실무 적용 가능성을 강조합니다. MNIST보다 훨씬 advanced하며, 자율주행이나 보안 시스템 같은 산업 프로젝트에 적합합니다. 자율주행 및 보안 분야 응용 가능성이 높습니다.
+                    </p>
+                    <ul class="list-disc list-inside text-slate-600 space-y-1">
+                        <li><strong>목표</strong>: 실시간 탐지 속도 30FPS 이상, 평균 정밀도(mAP) 0.75 이상 달성</li>
+                        <li><strong>주요 기술</strong>: Python, PyTorch, Ultralytics YOLO, OpenCV, NumPy</li>
+                        <li><strong>학습 과정</strong>: 데이터 준비 → 모델 훈련 → 추론 → 성능 평가</li>
+                    </ul>
+                </div>
+
+                <div class="mb-8">
+                    <h2 class="text-xl font-bold border-l-4 border-rose-600 pl-3 mb-4">📂 데이터셋 설명</h2>
+                    <p class="text-slate-600 mb-4">COCO 데이터셋(80개 클래스, 118k 이미지) 또는 Roboflow에서 커스텀 데이터셋 사용. 예: 차량/보행자 탐지.</p>
+                    <div class="center bg-slate-50 p-4 rounded-xl border border-dashed border-slate-300">
+                        <p class="text-sm italic">"아래 코드를 Google Colab에서 실행하면 YOLOv8 설치와 데이터 로드를 확인할 수 있습니다. (pip install ultralytics 필요)"</p>
+                    </div>
+                    <pre><code>
+                        # Colab에서 실행: YOLOv8 설치 & 데이터 로드 예시
+                        !pip install ultralytics
+                        
+                        from ultralytics import YOLO
+                        import cv2
+                        from google.colab.patches import cv2_imshow
+                        
+                        # 미리 학습된 모델 로드
+                        model = YOLO('yolov8n.pt')  # nano 버전으로 시작
+                        
+                        # 샘플 이미지 다운로드 및 탐지
+                        !wget https://ultralytics.com/images/bus.jpg
+                        results = model('bus.jpg')
+                        
+                        # 결과 시각화
+                        img = cv2.imread('bus.jpg')
+                        for r in results:
+                            boxes = r.boxes.xyxy.cpu().numpy()
+                            for box in boxes:
+                                cv2.rectangle(img, (int(box[0]), int(box[1])), (int(box[2]), int(box[3])), (0, 255, 0), 2)
+                        cv2_imshow(img)                        
+                    </code></pre>
+                </div>
+
+                <div class="mb-8">
+                    <h2 class="text-xl font-bold border-l-4 border-rose-600 pl-3 mb-4">🏗️ 모델 훈련 (Custom Dataset)</h2>
+                    <p class="text-slate-600 mb-4">Roboflow나 YAML 파일로 커스텀 데이터셋 준비 후 fine-tuning을 진행합니다 (에폭 50~100 추천).</p>
+                    <pre><code>
+                        # Colab에서 실행: 모델 훈련 예시 (YAML 파일 가정)
+                        model = YOLO('yolov8n.pt')
+                        
+                        # 훈련 (data.yaml: classes, train/val 경로 정의)
+                        results = model.train(data='data.yaml', epochs=50, imgsz=640, batch=16)
+                        
+                        # 훈련 결과 저장
+                        model.export(format='onnx')  # 배포용                        
+                    </code></pre>
+                    <p class="center font-bold text-slate-600">→ Pre-trained → Fine-tuning → Evaluation (mAP, Precision, Recall)</p>
+                </div>
+
+                <div class="mb-8">
+                    <h2 class="text-xl font-bold border-l-4 border-rose-600 pl-3 mb-4">⚡ 추론 & 실시간 탐지 코드</h2>
+                    <pre><code>
+                        # Colab에서 실행: 비디오/웹캠 실시간 탐지
+                        cap = cv2.VideoCapture(0)  # 웹캠, 또는 'video.mp4'로 파일
+                        
+                        while cap.isOpened():
+                            ret, frame = cap.read()
+                            if not ret:
+                                break
+                            
+                            results = model(frame)
+                            annotated_frame = results[0].plot()
+                            
+                            cv2_imshow(annotated_frame)  # Colab용, 실제로는 cv2.imshow
+                            
+                            if cv2.waitKey(1) & 0xFF == ord('q'):
+                                break
+                        
+                        cap.release()
+                        cv2.destroyAllWindows()                    
+                    </code></pre>
+                    <p class="text-slate-600 mt-2">이 코드는 <span class="highlight">실시간 FPS 30+ 달성</span>이 가능하며, 모바일 앱 연동으로 확장이 용이합니다.</p>
+                </div>
+
+                <div class="mb-8">
+                    <h2 class="text-xl font-bold border-l-4 border-rose-600 pl-3 mb-4">📊 결과 & 분석</h2>
+                    <ul class="list-disc list-inside text-slate-600 space-y-2">
+                        <li>성능 지표: mAP@0.5: 0.75+, Inference 시간: 10ms/image (GPU 기준)</li>
+                        <li>주요 학습 포인트: 데이터 라벨링 품질, Augmentation 전략, Hyperparameter Tuning</li>
+                        <li>개선 아이디어:
+                            <ul class="ml-6 mt-1 list-circle list-inside">
+                                <li>YOLOv8x (large) 모델로 업그레이드하여 정확도 극대화</li>
+                                <li>ByteTrack 등 Tracking 모듈 추가 (객체 개수 카운팅)</li>
+                                <li>AWS EC2(G타입) 배포를 통한 클라우드 AI 서비스화</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="mb-8">
+                    <h2 class="text-xl font-bold border-l-4 border-rose-600 pl-3 mb-4">🏁 결론 & 확장 가능성</h2>
+                    <ul class="list-disc list-inside text-slate-600 space-y-1">
+                        <li>자율주행 시뮬레이션 (CARLA 연동) 데이터 수집 및 분석</li>
+                        <li>보안 시스템 (침입자 탐지 및 이상 행동 분석)</li>
+                        <li>웹 앱 배포 (Streamlit + YOLO)를 통한 실시간 탐지 데모 사이트 구축</li>
+                        <li><strong>취업 팁</strong>: GitHub에 실행 비디오 데모와 성능 대시보드를 업로드하고 LinkedIn에 공유하세요.</li>
+                    </ul>
+                </div>
+            </section>
+            
+
             <footer class="text-center text-slate-400 py-10 text-sm">
                 <p>© 2026 AI Portfolio Master List. All Rights Reserved.</p>
             </footer>
@@ -381,5 +762,6 @@
         </div>
     </div>
 
+    
 </body>
 </html>
